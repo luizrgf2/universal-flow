@@ -1,0 +1,339 @@
+<mxfile host="65bd71144e">
+    <diagram id="i2CTpm-8GxpsPO8ewnJN" name="Context">
+        <mxGraphModel dx="967" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="JK7IYAdwa4jf3VI1B1Fm-6" style="edgeStyle=none;html=1;" parent="1" source="2" target="JK7IYAdwa4jf3VI1B1Fm-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="JK7IYAdwa4jf3VI1B1Fm-7" value="Save state of flow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="JK7IYAdwa4jf3VI1B1Fm-6" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1055" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="WeDyf3TAdSBYtZO1VHsS-6" style="edgeStyle=none;html=1;" parent="1" source="2" target="WeDyf3TAdSBYtZO1VHsS-5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="WeDyf3TAdSBYtZO1VHsS-7" value="Orchesral and performance flow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="WeDyf3TAdSBYtZO1VHsS-6" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2724" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="Universal Flow" c4Type="Software System" c4Description="Universal flow, application to run universal nodes" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" link="data:page/id,UAwAzAOVZb45Oam0OJ79" id="2">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="390" y="360" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="4" style="edgeStyle=none;html=1;entryX=0.921;entryY=0.025;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="3" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Create flows to run with nodes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="4" vertex="1" connectable="0">
+                    <mxGeometry x="-0.3077" y="3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="Backend" c4Type="Software System" c4Description="Backend or another external system" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="3">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="390" y="50" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="State Database" c4Type="Container" c4Technology="Redis or Postgres" c4Description="Database to save state of flows" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="JK7IYAdwa4jf3VI1B1Fm-5">
+                    <mxCell style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+                        <mxGeometry x="770" y="570" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="JK7IYAdwa4jf3VI1B1Fm-8" style="edgeStyle=none;html=1;exitX=0.121;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.283;entryY=0.992;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="JK7IYAdwa4jf3VI1B1Fm-9" value="Notfy external service about flow state" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="JK7IYAdwa4jf3VI1B1Fm-8" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2997" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="External Nodes" c4Type="Software System" c4Description="External nodes in go or another language" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="WeDyf3TAdSBYtZO1VHsS-5">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#6d8764;align=center;arcSize=10;strokeColor=#3A5431;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];fontColor=#ffffff;" parent="1" vertex="1">
+                        <mxGeometry x="960" y="180" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="UAwAzAOVZb45Oam0OJ79" name="Container">
+        <mxGraphModel dx="967" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <object placeholders="1" c4Name="Container name" c4Type="ContainerScopeBoundary" c4Application="Universal flow" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="u1OaM9onBjZVJ3gUN5zq-1">
+                    <mxCell style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="1790" y="1420" width="1020" height="500" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="Backend" c4Type="Software System" c4Description="Backend or another external system" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="hxVKfaJfMThHSHMrVELu-1">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="2160" y="1180" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="YsgxWZ39R6tV91A3NFb3-2" style="edgeStyle=none;html=1;" parent="1" source="j1kfxEz3Yf02eiYJi78P-1" target="YsgxWZ39R6tV91A3NFb3-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="YsgxWZ39R6tV91A3NFb3-3" value="Save node results, output and input, save flow state, flow errors and another states" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YsgxWZ39R6tV91A3NFb3-2" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1747" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="Universal Flow" c4Type="Software System" c4Description="Universal flow, application to run universal nodes" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" link="data:page/id,0uSdFC2T2q6lkm8Ewsxi" id="j1kfxEz3Yf02eiYJi78P-1">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="2160" y="1520" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="e.g. JSON/HTTP" c4Description="Send flows to exec" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="j1kfxEz3Yf02eiYJi78P-3">
+                    <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="hxVKfaJfMThHSHMrVELu-1" target="j1kfxEz3Yf02eiYJi78P-1" edge="1">
+                        <mxGeometry x="-0.28" width="240" relative="1" as="geometry">
+                            <mxPoint x="2150" y="1480" as="sourcePoint"/>
+                            <mxPoint x="2390" y="1480" as="targetPoint"/>
+                            <mxPoint as="offset"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="State Database" c4Type="Container" c4Technology="Redis or Postgres" c4Description="Database to save state of flows" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YsgxWZ39R6tV91A3NFb3-1">
+                    <mxCell style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+                        <mxGeometry x="2160" y="1780" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="YsgxWZ39R6tV91A3NFb3-4" style="edgeStyle=none;html=1;entryX=-0.017;entryY=0.596;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" source="j1kfxEz3Yf02eiYJi78P-1" target="hxVKfaJfMThHSHMrVELu-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1660" y="1580"/>
+                            <mxPoint x="1660" y="1252"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="YsgxWZ39R6tV91A3NFb3-5" value="Send flow state, error executions and another informations in real time" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="YsgxWZ39R6tV91A3NFb3-4" vertex="1" connectable="0">
+                    <mxGeometry x="0.5828" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="External node" c4Type="Software System" c4Description="External nodes, example node to send email" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="NJrGVZIOiHY4S71h5ZCE-2">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#6d8764;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#3A5431;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="2890" y="1520" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="AEeMMTFHPE9Y8pnVIj_--1" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="j1kfxEz3Yf02eiYJi78P-1" target="NJrGVZIOiHY4S71h5ZCE-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="AEeMMTFHPE9Y8pnVIj_--2" value="Execute nodes with state" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="AEeMMTFHPE9Y8pnVIj_--1" vertex="1" connectable="0">
+                    <mxGeometry x="-0.3105" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Type="Relationship" c4Technology="e.g. JSON/HTTP" c4Description="Consume input, send output or error in state database" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="AEeMMTFHPE9Y8pnVIj_--4">
+                    <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.25;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="NJrGVZIOiHY4S71h5ZCE-2" target="j1kfxEz3Yf02eiYJi78P-1" edge="1">
+                        <mxGeometry width="240" relative="1" as="geometry">
+                            <mxPoint x="2470" y="1510" as="sourcePoint"/>
+                            <mxPoint x="2710" y="1510" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="0uSdFC2T2q6lkm8Ewsxi" name="Components">
+        <mxGraphModel dx="967" dy="497" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="4681" pageHeight="3300" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <object placeholders="1" c4Name="Container name" c4Type="ContainerScopeBoundary" c4Application="Container" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;&lt;div style=&quot;text-align: left&quot;&gt;%c4Name%&lt;/div&gt;&lt;/b&gt;&lt;/font&gt;&lt;div style=&quot;text-align: left&quot;&gt;[%c4Application%]&lt;/div&gt;" id="N5_MZBmRQZGwXH2CoscE-1">
+                    <mxCell style="rounded=1;fontSize=11;whiteSpace=wrap;html=1;dashed=1;arcSize=20;fillColor=none;strokeColor=#666666;fontColor=#333333;labelBackgroundColor=none;align=left;verticalAlign=bottom;labelBorderColor=none;spacingTop=0;spacing=10;dashPattern=8 4;metaEdit=1;rotatable=0;perimeter=rectanglePerimeter;noLabel=0;labelPadding=0;allowArrows=0;connectable=0;expand=0;recursiveResize=0;editable=1;pointerEvents=0;absoluteArcSize=1;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="1750" y="1290" width="1410" height="630" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="Backend" c4Type="Software System" c4Description="Backend or another external system" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="IFGAFhZApA04-2XK8wuF-1">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="2620" y="1070" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-5" style="edgeStyle=none;html=1;" parent="1" source="4A3KJl-Yrto3TXP2jzXU-1" target="4A3KJl-Yrto3TXP2jzXU-2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-6" value="Send states to be managed" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="7MJKNuRWUUgbDY9Gd6hr-5" vertex="1" connectable="0">
+                    <mxGeometry x="0.0111" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-8" style="edgeStyle=none;html=1;" parent="1" source="4A3KJl-Yrto3TXP2jzXU-1" target="7MJKNuRWUUgbDY9Gd6hr-7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-9" value="Send states to send notifications states" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="7MJKNuRWUUgbDY9Gd6hr-8" vertex="1" connectable="0">
+                    <mxGeometry x="-0.0812" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="FlowEngine" c4Type="Component" c4Technology="Go lang" c4Description="Flow engine, exec and orchestral nodes" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="4A3KJl-Yrto3TXP2jzXU-1">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="2320" y="1460" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-2" style="edgeStyle=none;html=1;" parent="1" source="4A3KJl-Yrto3TXP2jzXU-2" target="7MJKNuRWUUgbDY9Gd6hr-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-3" value="Save states, errors, input, output and flow state running" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="7MJKNuRWUUgbDY9Gd6hr-2" vertex="1" connectable="0">
+                    <mxGeometry x="-0.234" y="-2" relative="1" as="geometry">
+                        <mxPoint x="-78" y="100" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="FlowStateManager" c4Type="Component" c4Technology="Go lang" c4Description="Flow engine, exec and orchestral nodes" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="4A3KJl-Yrto3TXP2jzXU-2">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#e3c800;fontColor=#000000;align=center;arcSize=6;strokeColor=#B09500;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" parent="1" vertex="1">
+                        <mxGeometry x="1850" y="1460" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="State Database" c4Type="Container" c4Technology="Redis or Postgres" c4Description="Database to save state of flows" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="7MJKNuRWUUgbDY9Gd6hr-1">
+                    <mxCell style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=12;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" parent="1" vertex="1">
+                        <mxGeometry x="1850" y="2050" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Type="Relationship" c4Technology="e.g. JSON/HTTP" c4Description="e.g. Makes API calls" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="7MJKNuRWUUgbDY9Gd6hr-4">
+                    <mxCell style="endArrow=blockThin;html=1;fontSize=10;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="IFGAFhZApA04-2XK8wuF-1" target="4A3KJl-Yrto3TXP2jzXU-1" edge="1">
+                        <mxGeometry width="240" relative="1" as="geometry">
+                            <mxPoint x="2280" y="1440" as="sourcePoint"/>
+                            <mxPoint x="2520" y="1440" as="targetPoint"/>
+                        </mxGeometry>
+                    </mxCell>
+                </object>
+                <object placeholders="1" c4Name="FlowNotificator" c4Type="Component" c4Technology="Go lang" c4Description="Notification about states of flow" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="7MJKNuRWUUgbDY9Gd6hr-7">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#fff2cc;align=center;arcSize=6;strokeColor=#d6b656;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];gradientColor=#ffd966;" parent="1" vertex="1">
+                        <mxGeometry x="2790" y="1460" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-10" style="edgeStyle=none;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;dashPattern=8 8;fillColor=#e51400;strokeColor=#B20000;" parent="1" source="7MJKNuRWUUgbDY9Gd6hr-7" target="IFGAFhZApA04-2XK8wuF-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2910" y="1130"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="7MJKNuRWUUgbDY9Gd6hr-11" value="Send states to backend about states of flow" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="7MJKNuRWUUgbDY9Gd6hr-10" vertex="1" connectable="0">
+                    <mxGeometry x="0.186" y="3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-5" style="edgeStyle=none;html=1;" parent="1" source="pea2b_-FFWVZn7qleZt8-1" target="pea2b_-FFWVZn7qleZt8-4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-10" value="Run start node first" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-5" vertex="1" connectable="0">
+                    <mxGeometry x="-0.3254" y="-1" relative="1" as="geometry">
+                        <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="Email sender flow" c4Type="Component" c4Technology="Go lang" c4Description="Flow email sender example" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="pea2b_-FFWVZn7qleZt8-1">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#e6d0de;align=center;arcSize=6;strokeColor=#996185;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];gradientColor=#d5739d;" parent="1" vertex="1">
+                        <mxGeometry x="2320" y="1730" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-2" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="4A3KJl-Yrto3TXP2jzXU-1" target="pea2b_-FFWVZn7qleZt8-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-3" value="Exec flow example" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-2" vertex="1" connectable="0">
+                    <mxGeometry x="0.0057" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-6" style="edgeStyle=none;html=1;" parent="1" source="pea2b_-FFWVZn7qleZt8-4" target="4A3KJl-Yrto3TXP2jzXU-2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2340" y="2080"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-7" value="Get input and&amp;nbsp; previuours states" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-6" vertex="1" connectable="0">
+                    <mxGeometry x="-0.6457" y="-2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="StartNode" c4Type="Component" c4Technology="any language" c4Description="Start node must be mandatory" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="pea2b_-FFWVZn7qleZt8-4">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#ffcd28;align=center;arcSize=6;strokeColor=#d79b00;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];gradientColor=#ffa500;" parent="1" vertex="1">
+                        <mxGeometry x="2580" y="2020" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-12" style="edgeStyle=none;html=1;entryX=0.25;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="pea2b_-FFWVZn7qleZt8-8" target="4A3KJl-Yrto3TXP2jzXU-2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="2800" y="2302.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="2430" y="2330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-13" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Get input and&amp;nbsp; previuours states&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-12" vertex="1" connectable="0">
+                    <mxGeometry x="-0.5212" y="2" relative="1" as="geometry">
+                        <mxPoint x="44" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="SendEmailNode" c4Type="Component" c4Technology="any language" c4Description="Send message node, that node must send email to any user" label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="pea2b_-FFWVZn7qleZt8-8">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#ffcd28;align=center;arcSize=6;strokeColor=#d79b00;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];gradientColor=#ffa500;" parent="1" vertex="1">
+                        <mxGeometry x="2870" y="2020" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-9" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="pea2b_-FFWVZn7qleZt8-1" target="pea2b_-FFWVZn7qleZt8-8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-11" value="Run after start, must run in order&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-9" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1979" relative="1" as="geometry">
+                        <mxPoint x="27" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-25" style="edgeStyle=none;html=1;fillColor=#ffcd28;gradientColor=#ffa500;strokeColor=#d79b00;" parent="1" source="pea2b_-FFWVZn7qleZt8-15" target="4A3KJl-Yrto3TXP2jzXU-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2860" y="1620"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-26" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;send finalize execution, to save states&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-25" vertex="1" connectable="0">
+                    <mxGeometry x="-0.161" y="-1" relative="1" as="geometry">
+                        <mxPoint y="-58" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object placeholders="1" c4Name="EndNode" c4Type="Component" c4Technology="any language" c4Description="Must run this node aways to finalize flow execution." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 11px&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="pea2b_-FFWVZn7qleZt8-15">
+                    <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#ffcd28;align=center;arcSize=6;strokeColor=#d79b00;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];gradientColor=#ffa500;" parent="1" vertex="1">
+                        <mxGeometry x="3180" y="2020" width="240" height="120" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-16" style="edgeStyle=none;html=1;entryX=0.601;entryY=0.053;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="pea2b_-FFWVZn7qleZt8-1" target="pea2b_-FFWVZn7qleZt8-15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-18" style="edgeStyle=none;html=1;entryX=0.06;entryY=0.96;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="pea2b_-FFWVZn7qleZt8-15" target="4A3KJl-Yrto3TXP2jzXU-2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2420" y="2470"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-19" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Get input and&amp;nbsp; previuours states&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-18" vertex="1" connectable="0">
+                    <mxGeometry x="-0.3235" relative="1" as="geometry">
+                        <mxPoint x="23" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-20" style="edgeStyle=none;html=1;entryX=0.901;entryY=0.972;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#ffcd28;gradientColor=#ffa500;strokeColor=#d79b00;" parent="1" source="pea2b_-FFWVZn7qleZt8-4" target="4A3KJl-Yrto3TXP2jzXU-1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-22" value="send finalize execution, to save states" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-20" vertex="1" connectable="0">
+                    <mxGeometry x="0.1633" y="-1" relative="1" as="geometry">
+                        <mxPoint x="3" y="-91" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-23" style="edgeStyle=none;html=1;entryX=1.003;entryY=0.844;entryDx=0;entryDy=0;entryPerimeter=0;fillColor=#ffcd28;gradientColor=#ffa500;strokeColor=#d79b00;" parent="1" source="pea2b_-FFWVZn7qleZt8-8" target="4A3KJl-Yrto3TXP2jzXU-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="2800" y="1660"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="pea2b_-FFWVZn7qleZt8-24" value="&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;send finalize execution, to save states&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="pea2b_-FFWVZn7qleZt8-23" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1344" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
