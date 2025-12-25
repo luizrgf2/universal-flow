@@ -2,6 +2,7 @@ package flowengine
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"strings"
 
@@ -39,9 +40,20 @@ func (fe *FlowEngineCore) selectNextNodeToRun(flow *entities.Flow) (*entities.No
 	}
 }
 
+func (fe *FlowEngineCore) createFlowIfNotExists(flow *entities.Flow) error {
+	if flow.CurrentNode == nil && flow.NextNode == nil && flow.PreviousNode == nil {
+		err := fe.flowStateManagerService.CreateFlow(flow)
+		if err != nil {
+			return err
+		}
+		return nil
+	}
+	return nil
+}
+
 func (fe *FlowEngineCore) updateFlowState(flow *entities.Flow) error {
 	if flow.CurrentNode == nil && flow.NextNode == nil && flow.PreviousNode == nil {
-		err := fe.flowStateManagerService.RunNewFlow(flow)
+		err := fe.flowStateManagerService.UpdateFlow(flow)
 		if err != nil {
 			return err
 		}
@@ -70,13 +82,19 @@ func (fe *FlowEngineCore) changeFlowStatus(flow *entities.Flow, status string) e
 	return nil
 }
 
-func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node) error {
+func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID string) error {
 	comands := strings.Split(nodeToRun.ScriptPath, " ")
 	comandMain := comands[0]
 	comands = comands[1:]
 
 	if (strings.Contains(nodeToRun.ScriptPath, "node") || strings.Contains(nodeToRun.ScriptPath, "bun")) && strings.Contains(nodeToRun.ScriptPath, ".js") {
 		execNode := exec.Command(comandMain, comands...)
+
+		execNode.Env = append(os.Environ(),
+			"FLOW_ID="+flowID,
+			"NODE_ID="+nodeToRun.ID,
+		)
+
 		output, errCommand := execNode.CombinedOutput()
 
 		if len(output) > 0 {
@@ -115,7 +133,13 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node) error {
 }
 
 func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
-	err := fe.changeFlowStatus(flow, "running")
+
+	err := fe.createFlowIfNotExists(flow)
+	if err != nil {
+		return err
+	}
+
+	err = fe.changeFlowStatus(flow, "running")
 	if err != nil {
 		return err
 	}
@@ -130,7 +154,7 @@ func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 		return err
 	}
 
-	err = fe.execJSNodeOrBun(nodeToRun)
+	err = fe.execJSNodeOrBun(nodeToRun, flow.ID)
 	if err != nil {
 		return err
 	}
