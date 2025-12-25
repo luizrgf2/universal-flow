@@ -122,7 +122,6 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 }
 
 func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
-
 	err := fe.changeFlowStatus(flow, "running")
 	if err != nil {
 		return err
