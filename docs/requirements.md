@@ -20,6 +20,18 @@ Isso garante que cada nó seja uma unidade de trabalho universal e autônoma, e 
 -   **R2.4: Persistência do Estado de Saída via API:** Um nó **deve** reportar sua conclusão, resultado ou erro fazendo uma chamada para a API do `FlowStateManager`. Esta ação substitui o `return` tradicional e sinaliza o fim de sua execução.
     -   *Exemplo:* Após enviar o e-mail, o `SendEmailNode` deve chamar a API para salvar seu estado de conclusão, como `{"status": "completed", "output": {"message_id": "xyz-123"}}`.
 
+-   **R2.5: Acesso ao Contexto de Execução via Variáveis de Ambiente:** Para que um nó possa interagir com a API e consultar ou atualizar o estado correto, o `FlowEngine` **deve** injetar o contexto de execução no ambiente do processo do nó.
+    -   As seguintes variáveis de ambiente são obrigatórias:
+        -   `FLOW_ID`: Contém o ID da instância do fluxo que está em execução.
+        -   `NODE_ID`: Contém o ID da instância do nó que está sendo executado.
+    -   *Exemplo em um script Node.js:*
+        ```javascript
+        const flowId = process.env.FLOW_ID;
+        const nodeId = process.env.NODE_ID;
+        // Usa os IDs para fazer uma chamada à API:
+        // fetch(`/api/v1/flows/${flowId}/states?node_id=${nodeId}`);
+        ```
+
 ## 3. Requisitos para a API do FlowStateManager
 
 -   **R3.1: Acesso ao Estado do Fluxo:** A API **deve** fornecer um endpoint para que um nó possa consultar o estado atual do fluxo, incluindo os resultados de todos os nós executados anteriormente.
