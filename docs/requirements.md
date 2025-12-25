@@ -63,6 +63,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
     {
       "id": "start-node-uuid",
       "name": "StartNode",
+      "script_path": "node start.js",
       "status": "completed",
       "state": {
         "input": { "customer_id": "abc-123" },
@@ -75,6 +76,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
     {
       "id": "send-welcome-email-uuid",
       "name": "SendEmailNode",
+      "script_path": "node sendEmail.js",
       "status": "running",
       "state": {
         "input": { "email_address": "customer@email.com", "kit": "full" },
@@ -87,6 +89,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
     {
       "id": "end-node-uuid",
       "name": "EndNode",
+      "script_path": "node end.js",
       "status": "pending",
       "state": {},
       "error": null,
@@ -109,6 +112,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
 *   **`nodes`**: (array) A lista de todos os nós que compõem o fluxo.
     *   **`id`**: (string) O ID único da **instância** de um nó dentro do fluxo.
     *   **`name`**: (string) O nome do *tipo* de nó (ex: `SendEmailNode`).
+    *   **`script_path`**: (string) O caminho para o script que o nó irá executar (ex: `node sendEmail.js` ou `go run main.go`).
     *   **`status`**: (string) O estado de execução específico daquele nó.
     *   **`state`**: (json) Um objeto que contém os dados que o nó produziu como resultado (`output`). Este campo é preenchido pelo próprio nó ao chamar a API de estado para finalizar sua execução.
     *   **`error`**: (string | json | null) Descreve qualquer erro que tenha ocorrido durante a execução do nó. Pode ser uma simples string ou um objeto JSON estruturado. É `null` se nenhuma falha ocorrer. Essencial para depuração e visibilidade.

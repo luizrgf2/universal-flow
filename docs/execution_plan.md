@@ -49,6 +49,7 @@ O `FlowEngine` é o componente responsável por conduzir a instância do fluxo a
             -   Em caso de falha, o payload seria: `{ "status": "failed", "error": "details here" }`
     -   **c. Atualização de Estado pelo FlowEngine:** O `FlowEngine` é notificado da finalização do nó (através de um evento ou ao receber a resposta da API).
         -   Ele atualiza o `status`, `output` e `error` do nó que acabou de rodar.
+        -   Adiciona o ID do nó finalizado ao array `previous_nodes_runned`.
         -   Define `previous_node` com o valor de `current_node`.
         -   Lê o campo `selected_node` retornado pelo nó para determinar o próximo passo.
         -   Atualiza `current_node` com o valor de `selected_node`.
@@ -88,10 +89,12 @@ Representa a instância completa de um fluxo de trabalho em execução.
   "current_node": "send-welcome-email-uuid",
   "previous_node": "start-node-uuid",
   "next_node": "wait-for-activation-uuid",
+  "previous_nodes_runned": ["start-node-uuid"],
   "nodes": [
     {
       "id": "start-node-uuid",
       "name": "StartNode",
+      "script_path": "node start.js",
       "status": "completed",
       "state": {
         "input": { "customer_id": "abc-123" }
@@ -103,6 +106,7 @@ Representa a instância completa de um fluxo de trabalho em execução.
     {
       "id": "send-welcome-email-uuid",
       "name": "SendWelcomeEmail",
+      "script_path": "node sendEmail.js",
       "status": "running",
       "state": null,
       "error": null,
@@ -118,6 +122,7 @@ Representa o estado de um nó específico dentro de uma `FlowInstance`.
 
 -   `id`: UUID único do nó na instância.
 -   `name`: Nome do "template" do nó.
+-   `script_path`: O caminho para o script que o nó irá executar (ex: `node sendEmail.js` ou `go run main.go`).
 -   `status`: Estado de execução do nó (`pending`, `running`, `completed`, `failed`).
 -   `state`: Dados de entrada ou intermediários usados pelo nó.
 -   `error`: Mensagem de erro, caso a execução falhe.
