@@ -33,7 +33,7 @@ func validateNode(node *Node) error {
 	return nil
 }
 
-func NewNodeInstance(id string, name string, scriptPath string, outputNodes []string) (*Node, error) {
+func CreateNode(id string, name string, scriptPath string, outputNodes []string) (*Node, error) {
 
 	status, err := types.CreateNodeStatus("pending")
 	if err != nil {
