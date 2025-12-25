@@ -14,9 +14,19 @@ type FlowStateManagerMocked struct {
 	mock.Mock
 }
 
-func (m *FlowStateManagerMocked) RunNewFlow(flow *entities.Flow) error {
+func (m *FlowStateManagerMocked) CreateFlow(flow *entities.Flow) error {
 	args := m.Called(flow)
 	return args.Error(0)
+}
+
+func (m *FlowStateManagerMocked) UpdateFlow(flow *entities.Flow) error {
+	args := m.Called(flow)
+	return args.Error(0)
+}
+
+func (m *FlowStateManagerMocked) GetFlowState(flowId string) (*entities.Flow, error) {
+	args := m.Called(flowId)
+	return args.Get(0).(*entities.Flow), args.Error(1)
 }
 
 func TestToRunSimpleNodeInNodeJs(t *testing.T) {
@@ -38,11 +48,11 @@ func TestToRunSimpleNodeInNodeJs(t *testing.T) {
 	}
 
 	flowStateManagerMocked := &FlowStateManagerMocked{}
-	flowStateManagerMocked.On("RunNewFlow", flowToTest).Return(nil)
+	flowStateManagerMocked.On("CreateFlow", flowToTest).Return(nil)
+	flowStateManagerMocked.On("UpdateFlow", flowToTest).Return(nil)
 
 	flowEngine := flowengine.NewFlowEngine(flowStateManagerMocked)
 
 	err = flowEngine.RunFlow(flowToTest)
 	assert.ErrorIs(t, err, nil)
-
 }
