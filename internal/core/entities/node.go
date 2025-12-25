@@ -9,8 +9,8 @@ import (
 )
 
 type NodeState struct {
-	Input  interface{}
-	Output interface{}
+	Input  string `json:"input"`
+	Output string `json:"output"`
 }
 
 type Node struct {
@@ -93,4 +93,22 @@ func (n *Node) ChangeSelectedNode(selectedNode string) error {
 	} else {
 		return fmt.Errorf("Error not exists this node id: %s in ouputNodes", selectedNode)
 	}
+}
+
+func (n *Node) ChangeOutput(outputData string) error {
+	if outputData == "" {
+		n.State.Output = ""
+		return nil
+	}
+	n.State.Output = outputData
+	return nil
+}
+
+func (n *Node) ChangeInput(inputData string) error {
+	if inputData == "" {
+		n.State.Input = ""
+		return nil
+	}
+	n.State.Input = inputData
+	return nil
 }
