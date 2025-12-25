@@ -39,6 +39,8 @@ Após a conclusão de sua lógica, o nó faz uma nova chamada à API do serviço
 
 O nó deve selecionar o próximo passo e atualizar o campo `selected_node` em seu próprio objeto de estado para registrar a decisão.
 
+Imediatamente após a conclusão bem-sucedida de um nó, o motor do fluxo (FlowEngine) deve adicionar o ID desse nó ao array `previous_nodes_runned` no estado global do fluxo. Isso cria um histórico cronológico e imutável do caminho de execução.
+
 ### 5. Indicação do Próximo Nó
 
 Finalmente, o motor do fluxo utiliza o valor de `selected_node` para atualizar o campo `next_node` no nível raiz do estado do fluxo, preparando o terreno para a próxima iteração do ciclo. O fluxo então prossegue para o nó indicado.

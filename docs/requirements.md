@@ -58,6 +58,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
   "current_node": "send-welcome-email-uuid",
   "next_node": "end-node-uuid",
   "previous_node": "start-node-uuid",
+  "previous_nodes_runned": ["start-node-uuid"],
   "nodes": [
     {
       "id": "start-node-uuid",
@@ -104,6 +105,7 @@ A estrutura de dados principal que o `FlowStateManager` gerencia para representa
 *   **`current_node`**: (string) O ID do nó que está atualmente em execução ou pronto para ser executado. Essencial para o `FlowEngine` saber onde retomar o trabalho.
 *   **`next_node`**: (string | null) O ID do próximo nó que será executado assim que o `current_node` for concluído. Ele é determinado pelo valor de `selected_node` do nó atual.
 *   **`previous_node`**: (string) O ID do último nó que foi concluído. Útil para rastreabilidade e lógica de compensação.
+*   **`previous_nodes_runned`**: (array de strings) Um histórico contendo os IDs de todos os nós que já foram executados, na ordem de sua conclusão. Essencial para auditoria completa e para lógicas de negócio que precisam verificar o caminho percorrido.
 *   **`nodes`**: (array) A lista de todos os nós que compõem o fluxo.
     *   **`id`**: (string) O ID único da **instância** de um nó dentro do fluxo.
     *   **`name`**: (string) O nome do *tipo* de nó (ex: `SendEmailNode`).
