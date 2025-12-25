@@ -40,17 +40,6 @@ func (fe *FlowEngineCore) selectNextNodeToRun(flow *entities.Flow) (*entities.No
 	}
 }
 
-func (fe *FlowEngineCore) createFlowIfNotExists(flow *entities.Flow) error {
-	if flow.CurrentNode == nil && flow.NextNode == nil && flow.PreviousNode == nil {
-		err := fe.flowStateManagerService.CreateFlow(flow)
-		if err != nil {
-			return err
-		}
-		return nil
-	}
-	return nil
-}
-
 func (fe *FlowEngineCore) updateFlowState(flow *entities.Flow) error {
 	if flow.CurrentNode == nil && flow.NextNode == nil && flow.PreviousNode == nil {
 		err := fe.flowStateManagerService.UpdateFlow(flow)
@@ -134,12 +123,7 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 
 func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 
-	err := fe.createFlowIfNotExists(flow)
-	if err != nil {
-		return err
-	}
-
-	err = fe.changeFlowStatus(flow, "running")
+	err := fe.changeFlowStatus(flow, "running")
 	if err != nil {
 		return err
 	}
