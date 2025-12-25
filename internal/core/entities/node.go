@@ -16,6 +16,7 @@ type NodeState struct {
 type Node struct {
 	ID           string           `json:"id" validate:"required,uuid"`
 	Name         string           `json:"name" validate:"required,min=3,max=100"`
+	ScriptPath   string           `json:"script_path" validate:"required"`
 	Status       types.NodeStatus `json:"status"`
 	State        NodeState        `json:"state"`
 	Error        *string          `json:"error"`
@@ -32,7 +33,7 @@ func validateNode(node *Node) error {
 	return nil
 }
 
-func NewNodeInstance(id string, name string, outputNodes []string) (*Node, error) {
+func NewNodeInstance(id string, name string, scriptPath string, outputNodes []string) (*Node, error) {
 
 	status, err := types.CreateNodeStatus("pending")
 	if err != nil {
@@ -42,6 +43,7 @@ func NewNodeInstance(id string, name string, outputNodes []string) (*Node, error
 	node := &Node{
 		ID:          id,
 		Name:        name,
+		ScriptPath:  scriptPath,
 		Status:      status,
 		OutputNodes: outputNodes,
 	}
@@ -110,5 +112,14 @@ func (n *Node) ChangeInput(inputData string) error {
 		return nil
 	}
 	n.State.Input = inputData
+	return nil
+}
+
+func (n *Node) ChangeError(errorData string) error {
+	if errorData == "" {
+		n.Error = nil
+		return nil
+	}
+	n.Error = &errorData
 	return nil
 }
