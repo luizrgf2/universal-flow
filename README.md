@@ -49,17 +49,33 @@ Para iniciar um novo fluxo de trabalho, você envia uma requisição `POST` com 
       "id": "b2c3d4e5-f6a7-b8c9-d0e1-f2a3b4b5c6d7",
       "name": "Nó Intermediário",
       "script_path": "node /path/to/your/middle-script.js",
-      "output_node": ["c3d4e5f6-a7b8-c9d0-e1f2a3b4b5c6d7"]
+      "output_node": ["c3d4e5f6-a7b8-c9d0-e1f2a3b4b5c6d7", "d4e5f6a7-b8c9-d0e1-f2a3b4b5c6d8"]
     },
     {
       "id": "c3d4e5f6-a7b8-c9d0-e1f2a3b4b5c6d7",
-      "name": "Nó Final",
-      "script_path": "node /path/to/your/end-script.js",
+      "name": "Nó Final (Caminho A)",
+      "script_path": "node /path/to/your/end-script-A.js",
+      "output_node": []
+    },
+    {
+      "id": "d4e5f6a7-b8c9-d0e1-f2a3b4b5c6d8",
+      "name": "Nó Final (Caminho B)",
+      "script_path": "node /path/to/your/end-script-B.js",
       "output_node": []
     }
   ]
 }
 ```
+
+#### O Campo `output_node`
+
+O campo `output_node` é fundamental para definir a estrutura do seu fluxo. Ele é um array de strings que contém os IDs de todos os nós que são **destinos possíveis** a partir do nó atual.
+
+-   **Fluxos Lineares:** Se um nó tem apenas um caminho possível, o `output_node` conterá um único ID.
+-   **Bifurcações e Condicionais:** Se um nó pode levar a múltiplos caminhos diferentes (ex: "Aprovar" vs. "Rejeitar"), o `output_node` conterá os IDs de todos os nós de destino possíveis.
+-   **Nós Finais:** Um nó que finaliza um fluxo (ou um caminho do fluxo) terá um array vazio `[]`.
+
+A responsabilidade de **escolher** qual caminho seguir, dentre as opções listadas no `output_node`, é da lógica interna do script do nó. Ao chamar o endpoint `finish-node`, o script deve passar o ID do nó escolhido no campo `next_node_id`.
 
 ### 2. Obter Estado do Fluxo
 
