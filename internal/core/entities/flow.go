@@ -84,6 +84,23 @@ func (f *Flow) SetNextNode(nodeID string) error {
 	return nil
 }
 
+func (f *Flow) SetPreviousNode(nodeID string) error {
+	if f.CurrentNode != nil && *f.CurrentNode == nodeID {
+		f.PreviousNode = f.CurrentNode
+	}
+	if f.NextNode != nil && *f.NextNode == nodeID {
+		return fmt.Errorf("previous node %s cannot be the same as the next node", nodeID)
+	}
+	if slices.Contains(f.PreviousNodesRunned, nodeID) {
+		return fmt.Errorf("node %s has already been run", nodeID)
+	}
+
+	f.PreviousNode = &nodeID
+	f.PreviousNodesRunned = append(f.PreviousNodesRunned, nodeID)
+
+	return nil
+}
+
 func validateFlow(flow *Flow) error {
 	validator := validator.New()
 	err := validator.Struct(flow)

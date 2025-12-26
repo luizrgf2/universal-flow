@@ -115,6 +115,7 @@ func (uc *FinishNodeUseCase) Execute(input FinishNodeUseCaseInput) error {
 	}
 
 	flow.Nodes[nodeIndex] = *node
+	flow.SetPreviousNode(node.ID)
 
 	err = uc.FlowStateManagerService.UpdateFlow(flow)
 	if err != nil {
