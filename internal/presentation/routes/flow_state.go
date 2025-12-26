@@ -10,4 +10,5 @@ func FlowStateRoutes(routes *gin.RouterGroup) {
 	routeGroup := routes.Group("/flow-state")
 	routeGroup.POST("/create-flow-to-run", controllers.CreateFlowToRunController)
 	routeGroup.GET("/get-flow-state/:id", controllers.GetFlowStateController)
+	routeGroup.PATCH("/finish-node", controllers.FinishNodeController)
 }
