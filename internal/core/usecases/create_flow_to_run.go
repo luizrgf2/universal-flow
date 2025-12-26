@@ -14,9 +14,10 @@ type CreateFlowUseCaseNodes struct {
 }
 
 type CreateFlowUseCaseInput struct {
-	ID    string                   `json:"id"`
-	Name  string                   `json:"name"`
-	Nodes []CreateFlowUseCaseNodes `json:"nodes"`
+	ID             string                   `json:"id"`
+	Name           string                   `json:"name"`
+	Nodes          []CreateFlowUseCaseNodes `json:"nodes"`
+	OnlyCreateFlow *bool                    `json:"only_create_flow"`
 }
 
 type CreateFlowToRunUseCase struct {
@@ -55,6 +56,10 @@ func (uc *CreateFlowToRunUseCase) Execute(input CreateFlowUseCaseInput) error {
 	err = uc.flowStateManagerService.CreateFlow(flow)
 	if err != nil {
 		return err
+	}
+
+	if input.OnlyCreateFlow != nil && *input.OnlyCreateFlow {
+		return nil
 	}
 
 	flowengine := flowengine.NewFlowEngine(uc.flowStateManagerService)
