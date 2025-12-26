@@ -160,7 +160,7 @@ func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 
 	err = flow.SetCurrentNode(nodeToRun.ID)
 	if err != nil {
-		return err
+		return nil
 	}
 
 	fe.updateNodeInFlow(flow, nodeToRun)
