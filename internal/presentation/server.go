@@ -1,8 +1,11 @@
 package presentation
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/luizrgf2/universal-flow/internal/presentation/routes"
+)
 
-func StartServer() *gin.RouterGroup {
+func StartServer() *gin.Engine {
 	r := gin.Default()
 
 	routeApi := r.Group("/api")
@@ -12,6 +15,7 @@ func StartServer() *gin.RouterGroup {
 			"message": "pong",
 		})
 	})
-	r.Run(":8080")
-	return routeApi
+
+	routes.FlowStateRoutes(routeApi)
+	return r
 }

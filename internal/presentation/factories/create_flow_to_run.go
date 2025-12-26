@@ -6,7 +6,7 @@ import (
 )
 
 func CreateFlowToRunFactory() *usecases.CreateFlowToRunUseCase {
-	flowStateManagerService, err := infra.NewFlowStateManagerSqlite(".")
+	flowStateManagerService, err := infra.NewFlowStateManagerSqlite("flow_state.db")
 	if err != nil {
 		panic(err)
 	}
