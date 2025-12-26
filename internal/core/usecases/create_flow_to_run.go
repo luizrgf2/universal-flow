@@ -23,6 +23,10 @@ type CreateFlowToRunUseCase struct {
 	flowStateManagerService services_interfaces.FlowStateManagerService
 }
 
+func MakeCreateFlowToRun(flowStateManagerService services_interfaces.FlowStateManagerService) *CreateFlowToRunUseCase {
+	return &CreateFlowToRunUseCase{flowStateManagerService}
+}
+
 func (uc *CreateFlowToRunUseCase) createNodesWithInput(nodesInput *[]CreateFlowUseCaseNodes) (*[]entities.Node, error) {
 	nodes := []entities.Node{}
 
