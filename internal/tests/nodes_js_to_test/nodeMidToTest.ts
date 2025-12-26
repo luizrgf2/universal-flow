@@ -11,24 +11,25 @@ function getNode(nodes: NodeInterface[], nodeId: string) {
     return nodes.find(node => node.id === nodeId)   
 }
 
-
-
-async function getStateFromFlow() {
+async function getFlowState() {
     const flowId = process.env.FLOW_ID
-    const nodeId = process.env.NODE_ID as string
-    
     const url = baseURL + `/get-flow-state/${flowId}`
-    const urlFinish = baseURL + `/finish-node?flowId=${flowId}`
-
     const resposta = await fetch(url);
     const dados = await resposta.json() as FlowInterface;
-    
-    const node = getNode(dados.nodes, nodeId)
+    return dados
+}
 
-    const body = {
-        flow_id: process.env.FLOW_ID as string,
-        node_id: process.env.NODE_ID as string,
-        next_node_id: node?.outputNodes[0] as string,
+async function finishNode(node?: NodeInterface, output?: object, error?: string) {
+    const flowId = process.env.FLOW_ID as string
+    const nodeId = process.env.NODE_ID as string
+    
+    const urlFinish = baseURL + `/finish-node?flowId=${flowId}`
+        const body = {
+        flow_id: flowId,
+        node_id: nodeId,
+        next_node_id: node ? node?.outputNodes[0] as string : undefined,
+        node_output: output ? JSON.stringify(output) : undefined,
+        error_message: error ? error : undefined
     } as FinishInterface
 
     const resposta2 = await fetch(urlFinish, {
@@ -39,7 +40,33 @@ async function getStateFromFlow() {
         body: JSON.stringify(body)
     });
     const dados2 = await resposta2.json();
-    await writeFile('nodeMidToTestOutput.json', JSON.stringify(dados2, null, 2))
+
+}
+
+
+
+
+async function getStateFromFlow() {
+    const flowId = process.env.FLOW_ID
+    const nodeId = process.env.NODE_ID as string
+    
+    const FLOW_STATE = await getFlowState()
+    const node = getNode(FLOW_STATE.nodes, nodeId)
+    const nodeInput = node?.state?.input ? JSON.parse(node.state.input) as any : undefined 
+
+    //get filename from flow state
+    const fileName = nodeInput.fileName as string
+
+
+
+
+    if(!node) 
+        return await finishNode(node, undefined, "Node not found")
+    
+    await writeFile(fileName, "Hello Password")
+
+    await finishNode(node, {password: "Hello Password"})
+
 }
 
 (async ()=>{
