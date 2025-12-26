@@ -41,12 +41,9 @@ func (fe *FlowEngineCore) selectNextNodeToRun(flow *entities.Flow) (*entities.No
 }
 
 func (fe *FlowEngineCore) updateFlowState(flow *entities.Flow) error {
-	if flow.CurrentNode == nil && flow.NextNode == nil && flow.PreviousNode == nil {
-		err := fe.flowStateManagerService.UpdateFlow(flow)
-		if err != nil {
-			return err
-		}
-		return nil
+	err := fe.flowStateManagerService.UpdateFlow(flow)
+	if err != nil {
+		return err
 	}
 	return nil
 }
@@ -71,12 +68,27 @@ func (fe *FlowEngineCore) changeFlowStatus(flow *entities.Flow, status string) e
 	return nil
 }
 
+func (fe *FlowEngineCore) changeNodeStatus(nodeToUpdate *entities.Node, status string) error {
+	statusToChange, err := types.CreateNodeStatus(status)
+
+	if nodeToUpdate.Status == statusToChange {
+		return nil
+	}
+
+	err = nodeToUpdate.ChangeNodeStatus(statusToChange)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID string) error {
 	comands := strings.Split(nodeToRun.ScriptPath, " ")
 	comandMain := comands[0]
 	comands = comands[1:]
 
-	if (strings.Contains(nodeToRun.ScriptPath, "node") || strings.Contains(nodeToRun.ScriptPath, "bun")) && strings.Contains(nodeToRun.ScriptPath, ".js") {
+	if (strings.Contains(nodeToRun.ScriptPath, "node") || strings.Contains(nodeToRun.ScriptPath, "bun")) && (strings.Contains(nodeToRun.ScriptPath, ".js") || strings.Contains(nodeToRun.ScriptPath, ".ts")) {
 		execNode := exec.Command(comandMain, comands...)
 
 		execNode.Env = append(os.Environ(),
@@ -121,6 +133,15 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 	return fmt.Errorf("Error not js valid command")
 }
 
+func (fe *FlowEngineCore) updateNodeInFlow(flow *entities.Flow, nodeToUpdate *entities.Node) {
+	for i, node := range flow.Nodes {
+		if node.ID == nodeToUpdate.ID {
+			flow.Nodes[i] = *nodeToUpdate
+			return
+		}
+	}
+}
+
 func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 	err := fe.changeFlowStatus(flow, "running")
 	if err != nil {
@@ -132,17 +153,23 @@ func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 		return err
 	}
 
+	err = fe.changeNodeStatus(nodeToRun, "running")
+	if err != nil {
+		return err
+	}
+
 	err = flow.SetCurrentNode(nodeToRun.ID)
 	if err != nil {
 		return err
 	}
 
-	err = fe.execJSNodeOrBun(nodeToRun, flow.ID)
+	fe.updateNodeInFlow(flow, nodeToRun)
+	err = fe.updateFlowState(flow)
 	if err != nil {
 		return err
 	}
 
-	err = fe.updateFlowState(flow)
+	err = fe.execJSNodeOrBun(nodeToRun, flow.ID)
 	if err != nil {
 		return err
 	}

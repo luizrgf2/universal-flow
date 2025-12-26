@@ -20,7 +20,7 @@ type Node struct {
 	Status       types.NodeStatus `json:"status"`
 	State        NodeState        `json:"state"`
 	Error        *string          `json:"error"`
-	OutputNodes  []string         `json:"outputNodes" validate:"required,min=1"`
+	OutputNodes  []string         `json:"outputNodes" validate:"required"`
 	SelectedNode *string          `json:"selectedNode"`
 }
 
