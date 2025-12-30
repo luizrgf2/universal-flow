@@ -1,6 +1,7 @@
 package flowengine
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -133,6 +134,80 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 	return fmt.Errorf("Error not js valid command")
 }
 
+func (fe *FlowEngineCore) execGoNode(nodeToRun *entities.Node, flowID string) error {
+	comands := strings.Split(nodeToRun.ScriptPath, " ")
+	comandMain := comands[0]
+	comands = comands[1:]
+
+	if strings.Contains(nodeToRun.ScriptPath, "go run") && strings.Contains(nodeToRun.ScriptPath, ".go") {
+		execNode := exec.Command(comandMain, comands...)
+
+		execNode.Env = append(os.Environ(),
+			"FLOW_ID="+flowID,
+			"NODE_ID="+nodeToRun.ID,
+		)
+
+		output, errCommand := execNode.CombinedOutput()
+
+		if len(output) > 0 {
+			fmt.Print(string(output))
+		}
+
+		failedStatus, err := types.CreateNodeStatus("failed")
+		if err != nil {
+			return err
+		}
+
+		if errCommand != nil {
+			nodeToRun.ChangeNodeStatus(failedStatus)
+			nodeToRun.ChangeError(errCommand.Error())
+			return errCommand
+		}
+
+		completedStatus, err := types.CreateNodeStatus("completed")
+		if err != nil {
+			return err
+		}
+
+		nodeToRun.ChangeNodeStatus(completedStatus)
+		return nil
+	}
+
+	failedStatus, err := types.CreateNodeStatus("failed")
+	if err != nil {
+		return err
+	}
+
+	nodeToRun.ChangeNodeStatus(failedStatus)
+	nodeToRun.ChangeError("Error not go valid command")
+
+	return fmt.Errorf("Error not go valid command")
+}
+
+func (fe *FlowEngineCore) execNode(nodeToRun *entities.Node, flowID string) error {
+	isJSOrBun := (strings.Contains(nodeToRun.ScriptPath, "node") || strings.Contains(nodeToRun.ScriptPath, "bun")) && (strings.Contains(nodeToRun.ScriptPath, ".js") || strings.Contains(nodeToRun.ScriptPath, ".ts"))
+	isGo := strings.Contains(nodeToRun.ScriptPath, "go run") && strings.Contains(nodeToRun.ScriptPath, ".go")
+
+	if isJSOrBun {
+		return fe.execJSNodeOrBun(nodeToRun, flowID)
+	}
+
+	if isGo {
+		return fe.execGoNode(nodeToRun, flowID)
+	}
+
+	failedStatus, err := types.CreateNodeStatus("failed")
+	if err != nil {
+		return err
+	}
+
+	nodeToRun.ChangeNodeStatus(failedStatus)
+	errMessage := "Error not valid command, valid commands are node, bun and go"
+	nodeToRun.ChangeError(errMessage)
+
+	return errors.New(errMessage)
+}
+
 func (fe *FlowEngineCore) updateNodeInFlow(flow *entities.Flow, nodeToUpdate *entities.Node) {
 	for i, node := range flow.Nodes {
 		if node.ID == nodeToUpdate.ID {
@@ -169,7 +244,7 @@ func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 		return err
 	}
 
-	err = fe.execJSNodeOrBun(nodeToRun, flow.ID)
+	err = fe.execNode(nodeToRun, flow.ID)
 	if err != nil {
 		return err
 	}

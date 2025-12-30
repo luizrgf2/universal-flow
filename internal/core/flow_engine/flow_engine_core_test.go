@@ -56,3 +56,31 @@ func TestToRunSimpleNodeInNodeJs(t *testing.T) {
 	err = flowEngine.RunFlow(flowToTest)
 	assert.ErrorIs(t, err, nil)
 }
+
+func TestToRunSimpleNodeInGo(t *testing.T) {
+	pathScriptGo := "go run /home/luizrgf/projetos/meus/universal-flow/internal/tests/nodes_go_to_test/nodeStart/nodeStartToTest.go"
+
+	flowUuid := uuid.New().String()
+	nodeUuid := uuid.New().String()
+
+	nodeToTest, err := entities.CreateNode(nodeUuid, "test", pathScriptGo, []string{"sdfsdfsd"})
+	assert.ErrorIs(t, err, nil)
+	if err != nil {
+		return
+	}
+
+	flowToTest, err := entities.CreateFlow(flowUuid, "test", []entities.Node{*nodeToTest, *nodeToTest, *nodeToTest})
+	assert.ErrorIs(t, err, nil)
+	if err != nil {
+		return
+	}
+
+	flowStateManagerMocked := &FlowStateManagerMocked{}
+	flowStateManagerMocked.On("CreateFlow", flowToTest).Return(nil)
+	flowStateManagerMocked.On("UpdateFlow", flowToTest).Return(nil)
+
+	flowEngine := flowengine.NewFlowEngine(flowStateManagerMocked)
+
+	err = flowEngine.RunFlow(flowToTest)
+	assert.ErrorIs(t, err, nil)
+}
