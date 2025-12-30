@@ -33,3 +33,4 @@ go.work.sum
 
 *.db
 node_modules/
+*.txt
