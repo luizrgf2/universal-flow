@@ -16,6 +16,7 @@ type CreateFlowUseCaseNodes struct {
 type CreateFlowUseCaseInput struct {
 	ID             string                   `json:"id"`
 	Name           string                   `json:"name"`
+	UrlBaseServer  *string                  `json:"url_base_server,omitempty"`
 	Nodes          []CreateFlowUseCaseNodes `json:"nodes"`
 	OnlyCreateFlow *bool                    `json:"only_create_flow"`
 }
@@ -48,7 +49,7 @@ func (uc *CreateFlowToRunUseCase) Execute(input CreateFlowUseCaseInput) error {
 		return err
 	}
 
-	flow, err := entities.CreateFlow(input.ID, input.Name, *nodes)
+	flow, err := entities.CreateFlow(input.ID, input.Name, *nodes, input.UrlBaseServer)
 	if err != nil {
 		return err
 	}

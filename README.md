@@ -38,6 +38,7 @@ Para iniciar um novo fluxo de trabalho, você envia uma requisição `POST` com 
 {
   "id": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
   "name": "Meu Primeiro Fluxo",
+  "url_base_server": "http://localhost:3000",
   "nodes": [
     {
       "id": "a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
@@ -48,7 +49,7 @@ Para iniciar um novo fluxo de trabalho, você envia uma requisição `POST` com 
     {
       "id": "b2c3d4e5-f6a7-b8c9-d0e1-f2a3b4b5c6d7",
       "name": "Nó Intermediário",
-      "script_path": "node /path/to/your/middle-script.js",
+      "script_path": "server my-node-name",
       "output_node": ["c3d4e5f6-a7b8-c9d0-e1f2a3b4b5c6d7", "d4e5f6a7-b8c9-d0e1-f2a3b4b5c6d8"]
     },
     {
@@ -76,6 +77,23 @@ O campo `output_node` é fundamental para definir a estrutura do seu fluxo. Ele 
 -   **Nós Finais:** Um nó que finaliza um fluxo (ou um caminho do fluxo) terá um array vazio `[]`.
 
 A responsabilidade de **escolher** qual caminho seguir, dentre as opções listadas no `output_node`, é da lógica interna do script do nó. Ao chamar o endpoint `finish-node`, o script deve passar o ID do nó escolhido no campo `next_node_id`.
+
+#### O `url_base_server` e Nós do tipo `server`
+
+Para suportar a orquestração de nós que são serviços externos (microsserviços), você pode definir o campo opcional `url_base_server` no corpo da criação do fluxo.
+
+-   **`url_base_server`**: Uma string contendo a URL base para todos os nós do tipo `server` nesse fluxo.
+
+Quando um nó é definido com um `script_path` que começa com `server `, o motor de fluxo não executará um script local. Em vez disso, ele fará uma requisição HTTP para o serviço correspondente.
+
+**Sintaxe do `script_path`:** `server <nome-do-no-no-servidor>`
+
+**Exemplo:**
+Se `url_base_server` for `"http://localhost:3000"` e o `script_path` for `"server my-node"`, o motor fará a seguinte requisição:
+
+`GET http://localhost:3000/my-node?flow_id=<FLOW_ID>&node_id=<NODE_ID>`
+
+O serviço externo deve retornar um status `200 OK` para que o nó seja considerado `completed`. Qualquer outro status resultará em um `failed`. Os parâmetros `flow_id` e `node_id` são injetados para que o serviço possa interagir de volta com a API do Universal Flow, por exemplo, para finalizar o nó.
 
 ### 2. Obter Estado do Fluxo
 
@@ -208,3 +226,101 @@ main();
 ```
 
 Este exemplo demonstra o padrão principal: ler o contexto, fazer o trabalho e reportar de volta ao motor. Isso mantém seus nós simples, sem estado (stateless) e universalmente compatíveis com o motor de fluxo.
+
+### Exemplo de Nó (Go)
+
+Aqui está um exemplo simples de um nó escrito em Go. Ele demonstra como obter o contexto, consultar o estado do fluxo e sinalizar sua conclusão.
+
+```go
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"os"
+)
+
+// NodeOutput representa a estrutura da saída de um nó.
+type NodeOutput struct {
+	FileName string `json:"fileName"`
+	Message  string `json:"message"`
+}
+
+// FinishNodePayload é o payload enviado ao endpoint de finalização do nó.
+type FinishNodePayload struct {
+	NodeID     string          `json:"node_id"`
+	NextNodeID string          `json:"next_node_id,omitempty"`
+	NodeOutput json.RawMessage `json:"node_output,omitempty"`
+	ErrorMessage string      `json:"error_message,omitempty"`
+}
+
+// Exemplo simplificado de como um nó Go interage com o Universal Flow.
+func main() {
+	// 1. Ler o contexto das variáveis de ambiente.
+	flowID := os.Getenv("FLOW_ID")
+	nodeID := os.Getenv("NODE_ID")
+
+	if flowID == "" || nodeID == "" {
+		log.Fatal("Erro: FLOW_ID e NODE_ID devem ser definidos nas variáveis de ambiente.")
+	}
+
+	fmt.Printf("Executando o nó %s para o fluxo %s\n", nodeID, flowID)
+
+	// 2. (Opcional) Buscar o estado atual do fluxo (apenas para demonstração, não usado aqui).
+	// Em um nó real, você faria uma requisição GET para /api/flow-state/get-flow-state/:flowID
+	// para obter dados de nós anteriores.
+
+	// 3. Executar a lógica de negócio.
+	// Para este exemplo, vamos simular uma tarefa e gerar uma saída.
+	outputData := NodeOutput{
+		FileName: "report_2026-01-02.pdf",
+		Message:  "Relatório gerado com sucesso.",
+	}
+
+	outputJSON, err := json.Marshal(outputData)
+	if err != nil {
+		log.Fatalf("Erro ao serializar output: %v", err)
+	}
+
+	// 4. Finalizar o nó chamando a API do Universal Flow.
+	// Em um cenário real, `nextNodeID` seria determinado pela lógica de negócio.
+	// Usaremos um ID de exemplo.
+	nextNodeID := "c3d4e5f6-a7b8-c9d0-e1f2a3b4b5c6d7" // ID de exemplo do próximo nó
+
+	finishURL := fmt.Sprintf("http://localhost:8080/api/flow-state/finish-node?flowId=%s", flowID)
+	
+	payload := FinishNodePayload{
+		NodeID:     nodeID,
+		NextNodeID: nextNodeID,
+		NodeOutput: outputJSON,
+	}
+
+	payloadBytes, err := json.Marshal(payload)
+	if err != nil {
+		log.Fatalf("Erro ao serializar payload: %v", err)
+	}
+
+	req, err := http.NewRequest("PATCH", finishURL, bytes.NewBuffer(payloadBytes))
+	if err != nil {
+		log.Fatalf("Erro ao criar requisição: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("Erro ao fazer requisição PATCH: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		log.Fatalf("Falha ao finalizar nó. Status: %s", resp.Status)
+	}
+
+	fmt.Printf("Nó %s finalizado com sucesso para o fluxo %s.\n", nodeID, flowID)
+}
+```
+

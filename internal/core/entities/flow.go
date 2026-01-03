@@ -13,6 +13,7 @@ import (
 type Flow struct {
 	ID                  string           `json:"id" validate:"required,uuid"`
 	FlowName            string           `json:"flowName" validate:"required,min=3,max=40"`
+	UrlBaseServer       *string          `json:"url_base_server,omitempty" validate:"omitempty,url"`
 	Status              types.FlowStatus `json:"status"`
 	Nodes               []Node           `json:"nodes"`
 	CurrentNode         *string          `json:"currentNode"`
@@ -107,7 +108,7 @@ func validateFlow(flow *Flow) error {
 	return nil
 }
 
-func CreateFlow(id string, flowName string, nodes []Node) (*Flow, error) {
+func CreateFlow(id string, flowName string, nodes []Node, urlBaseServer *string) (*Flow, error) {
 	status, err := types.CreateFlowStatus("pending")
 	if err != nil {
 		return nil, err
@@ -122,6 +123,7 @@ func CreateFlow(id string, flowName string, nodes []Node) (*Flow, error) {
 		FlowName:            flowName,
 		Status:              status,
 		Nodes:               nodes,
+		UrlBaseServer:       urlBaseServer,
 		CurrentNode:         nil,
 		NextNode:            nil,
 		PreviousNode:        nil,

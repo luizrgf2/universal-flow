@@ -3,6 +3,7 @@ package flowengine
 import (
 	"errors"
 	"fmt"
+	"net/http"
 	"os"
 	"os/exec"
 	"strings"
@@ -84,7 +85,45 @@ func (fe *FlowEngineCore) changeNodeStatus(nodeToUpdate *entities.Node, status s
 	return nil
 }
 
-func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID string) error {
+func (fe *FlowEngineCore) execServerNode(nodeToRun *entities.Node, flow *entities.Flow) error {
+	handleServerError := func(err error) error {
+		nodeToRun.ChangeError(err.Error())
+		fe.changeNodeStatus(nodeToRun, "failed")
+		return err
+	}
+
+	if flow.UrlBaseServer == nil || *flow.UrlBaseServer == "" {
+		return handleServerError(errors.New("UrlBaseServer is not defined for this flow, but a server node was triggered"))
+	}
+
+	parts := strings.Split(nodeToRun.ScriptPath, " ")
+	if len(parts) != 2 {
+		return handleServerError(fmt.Errorf("invalid server node script_path format: '%s'. Expected 'server <node-name>'", nodeToRun.ScriptPath))
+	}
+	nodeName := parts[1]
+
+	url := fmt.Sprintf("%s/%s?flow_id=%s&node_id=%s", *flow.UrlBaseServer, nodeName, flow.ID, nodeToRun.ID)
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return handleServerError(err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return handleServerError(fmt.Errorf("server node execution failed with status %d", resp.StatusCode))
+	}
+
+	completedStatus, err := types.CreateNodeStatus("completed")
+	if err != nil {
+		return err
+	}
+
+	nodeToRun.ChangeNodeStatus(completedStatus)
+	return nil
+}
+
+func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flow *entities.Flow) error {
 	comands := strings.Split(nodeToRun.ScriptPath, " ")
 	comandMain := comands[0]
 	comands = comands[1:]
@@ -93,7 +132,7 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 		execNode := exec.Command(comandMain, comands...)
 
 		execNode.Env = append(os.Environ(),
-			"FLOW_ID="+flowID,
+			"FLOW_ID="+flow.ID,
 			"NODE_ID="+nodeToRun.ID,
 		)
 
@@ -134,7 +173,7 @@ func (fe *FlowEngineCore) execJSNodeOrBun(nodeToRun *entities.Node, flowID strin
 	return fmt.Errorf("Error not js valid command")
 }
 
-func (fe *FlowEngineCore) execGoNode(nodeToRun *entities.Node, flowID string) error {
+func (fe *FlowEngineCore) execGoNode(nodeToRun *entities.Node, flow *entities.Flow) error {
 	comands := strings.Split(nodeToRun.ScriptPath, " ")
 	comandMain := comands[0]
 	comands = comands[1:]
@@ -143,7 +182,7 @@ func (fe *FlowEngineCore) execGoNode(nodeToRun *entities.Node, flowID string) er
 		execNode := exec.Command(comandMain, comands...)
 
 		execNode.Env = append(os.Environ(),
-			"FLOW_ID="+flowID,
+			"FLOW_ID="+flow.ID,
 			"NODE_ID="+nodeToRun.ID,
 		)
 
@@ -184,16 +223,21 @@ func (fe *FlowEngineCore) execGoNode(nodeToRun *entities.Node, flowID string) er
 	return fmt.Errorf("Error not go valid command")
 }
 
-func (fe *FlowEngineCore) execNode(nodeToRun *entities.Node, flowID string) error {
+func (fe *FlowEngineCore) execNode(nodeToRun *entities.Node, flow *entities.Flow) error {
+	isServer := strings.HasPrefix(nodeToRun.ScriptPath, "server ")
 	isJSOrBun := (strings.Contains(nodeToRun.ScriptPath, "node") || strings.Contains(nodeToRun.ScriptPath, "bun")) && (strings.Contains(nodeToRun.ScriptPath, ".js") || strings.Contains(nodeToRun.ScriptPath, ".ts"))
 	isGo := strings.Contains(nodeToRun.ScriptPath, "go run") && strings.Contains(nodeToRun.ScriptPath, ".go")
 
+	if isServer {
+		return fe.execServerNode(nodeToRun, flow)
+	}
+
 	if isJSOrBun {
-		return fe.execJSNodeOrBun(nodeToRun, flowID)
+		return fe.execJSNodeOrBun(nodeToRun, flow)
 	}
 
 	if isGo {
-		return fe.execGoNode(nodeToRun, flowID)
+		return fe.execGoNode(nodeToRun, flow)
 	}
 
 	failedStatus, err := types.CreateNodeStatus("failed")
@@ -244,7 +288,7 @@ func (fe *FlowEngineCore) RunFlow(flow *entities.Flow) error {
 		return err
 	}
 
-	err = fe.execNode(nodeToRun, flow.ID)
+	err = fe.execNode(nodeToRun, flow)
 	if err != nil {
 		return err
 	}

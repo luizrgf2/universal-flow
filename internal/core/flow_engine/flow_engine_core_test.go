@@ -41,7 +41,7 @@ func TestToRunSimpleNodeInNodeJs(t *testing.T) {
 		return
 	}
 
-	flowToTest, err := entities.CreateFlow(flowUuid, "test", []entities.Node{*nodeToTest, *nodeToTest, *nodeToTest})
+	flowToTest, err := entities.CreateFlow(flowUuid, "test", []entities.Node{*nodeToTest, *nodeToTest, *nodeToTest}, nil)
 	assert.ErrorIs(t, err, nil)
 	if err != nil {
 		return
@@ -69,7 +69,7 @@ func TestToRunSimpleNodeInGo(t *testing.T) {
 		return
 	}
 
-	flowToTest, err := entities.CreateFlow(flowUuid, "test", []entities.Node{*nodeToTest, *nodeToTest, *nodeToTest})
+	flowToTest, err := entities.CreateFlow(flowUuid, "test", []entities.Node{*nodeToTest, *nodeToTest, *nodeToTest}, nil)
 	assert.ErrorIs(t, err, nil)
 	if err != nil {
 		return
